@@ -107,7 +107,11 @@ function handlePromptMessage({ id, condition, host, level }, sender) {
   }
 
   delete prompts[id];
-  browser.windows.remove(sender.tab.windowId);
+  if (browser.windows && browser.windows.remove) {
+    browser.windows.remove(sender.tab.windowId);
+  } else {
+    browser.tabs.remove(sender.tab.tabId);
+  }
 }
 
 function promptPermission(host, level, params) {
@@ -120,12 +124,17 @@ function promptPermission(host, level, params) {
   });
 
   return new Promise((resolve, reject) => {
-    browser.windows.create({
-      url: `${browser.runtime.getURL('prompt.html')}?${qs.toString()}`,
-      type: 'popup',
-      width: 600,
-      height: 400
-    });
+    const url = `${browser.runtime.getURL('prompt.html')}?${qs.toString()}`;
+    if (browser.windows && browser.windows.create) {
+      browser.windows.create({
+        url: url,
+        type: 'popup',
+        width: 600,
+        height: 400
+      });
+    } else {
+      browser.tabs.create({ url: url });
+    }
 
     prompts[id] = { resolve, reject };
   });
