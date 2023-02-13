@@ -1,0 +1,38 @@
+{
+  "name": "nos2x-fox forked by utubo",
+  "description": "Nostr Signer Extension (for Firefox for Android)",
+  "version": "1.9.1",
+  "homepage_url": "https://github.com/utubo/nos2x-fox",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "nos2x-fox-forked@utb.dip.jp"
+    }
+  },
+  "manifest_version": 2,
+  "icons": {
+    "16": "assets/logo/16x16.png",
+    "32": "assets/logo/32x32.png",
+    "48": "assets/logo/48x48.png",
+    "128": "assets/logo/128x128.png"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "browser_style": true
+  },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "browser_action": {
+    "default_title": "nos2x-fox",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content-script.js"]
+    }
+  ],
+  "permissions": ["storage"],
+  "web_accessible_resources": ["nostr-provider.js"],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self';"
+}
