@@ -110,7 +110,7 @@ function handlePromptMessage({ id, condition, host, level }, sender) {
   if (browser.windows && browser.windows.remove) {
     browser.windows.remove(sender.tab.windowId);
   } else {
-    browser.tabs.remove(sender.tab.tabId).then();
+    browser.tabs.remove(sender.tab.id).then();
   }
 }
 
