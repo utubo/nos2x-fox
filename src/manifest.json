@@ -1,7 +1,7 @@
 {
   "name": "nos2x-fox forked by utubo",
   "description": "Nostr Signer Extension (for Firefox for Android)",
-  "version": "1.9.1.1",
+  "version": "1.9.1.3",
   "homepage_url": "https://github.com/utubo/nos2x-fox",
   "browser_specific_settings": {
     "gecko": {
